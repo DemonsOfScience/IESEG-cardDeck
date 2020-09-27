@@ -1,0 +1,89 @@
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="programContainer">
+
+
+</div>
+<script>
+var colorDeckInteger = 0;
+var stapleCardIndex = 0;
+var cardTable = document.createElement("div");
+cardTable.setAttribute("id", "cardTable");
+cardTable.style.height = "400px";
+var typeOfCards = [1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,1,0,1,0,0,1,0,0,0];
+
+document.getElementById("programContainer").appendChild(cardTable);
+
+
+var coveredDeckContainer = document.createElement("div");
+cardTable.appendChild(coveredDeckContainer);
+coveredDeckContainer.setAttribute("id","coveredDeckContainer");
+coveredDeckContainer.style.height= "200px";
+coveredDeckContainer.style.width= "150px";
+coveredDeckContainer.style.position="absolute";
+coveredDeckContainer.style.left="30px";
+coveredDeckContainer.style.top="30px";
+coveredDeckContainer.style.backgroundImage= "url('afbeeldingen/achterkantKaartBlauw.jpg')";
+
+$("#coveredDeckContainer").click(function(){
+	changeColorDeck();
+	takeNewCard();
+});
+
+var openDeckContainer = document.createElement("div");
+
+cardTable.appendChild(openDeckContainer);
+openDeckContainer.setAttribute("id","openDeckContainer");
+openDeckContainer.style.height= "200px";
+openDeckContainer.style.width= "150px";
+openDeckContainer.style.position="absolute";
+openDeckContainer.style.left="230px";
+openDeckContainer.style.top="30px";
+openDeckContainer.style.border= "2px solid black";
+
+var imageContainer = document.createElement("img");
+openDeckContainer.appendChild(imageContainer);
+imageContainer.setAttribute("width","150px");
+
+var amountOfCardsLabel = document.createElement("input");
+cardTable.appendChild(amountOfCardsLabel);
+amountOfCardsLabel.setAttribute("width","5");
+amountOfCardsLabel.value = 0;
+amountOfCardsLabel.setAttribute("readonly","readonly");
+
+
+function changeColorDeck(){
+if(stapleCardIndex < typeOfCards.length){
+	if(colorDeckInteger == 0){
+	  coveredDeckContainer.style.backgroundImage= "url('afbeeldingen/achterkantKaartOranje.jpg')";
+	  colorDeckInteger = 1;
+	} else
+	{
+	  coveredDeckContainer.style.backgroundImage= "url('afbeeldingen/achterkantKaartBlauw.jpg')";
+	  colorDeckInteger = 0;
+	}
+}
+
+}
+
+function takeNewCard(){
+if(stapleCardIndex < typeOfCards.length){
+	stapleCardIndex++;
+	amountOfCardsLabel.value = stapleCardIndex;
+	if(typeOfCards[stapleCardIndex] == 0){
+		imageContainer.setAttribute("src","afbeeldingen/cirkel.png");
+	}
+	else{
+		imageContainer.setAttribute("src","afbeeldingen/vierkant.png");
+	}
+	}
+}
+</script>
+</body>
+
+
+</html>
